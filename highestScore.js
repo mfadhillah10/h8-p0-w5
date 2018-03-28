@@ -5,13 +5,13 @@ function highestScore (students) {
         return obj;
     }
     for (var i = 0; i < students.length; i++) {
-      var studentObj = {name: students[i].name, score: students[i].score};
-
-      if (obj[students[i].class] === undefined) {
-        obj[students[i].class] = studentObj;
-      }
-      else if (students[i].score > studentObj.score) {
-        studentObj.score = students[i].score;
+      obj[students[i].class] = {};
+      obj[students[i].class].score = 0;
+      for (var j = 0; j < students.length; j++) {
+        if (students[i].class === students[j].class && students[j].score > obj[students[i].class].score) {
+          obj[students[i].class].score = students[j].score;
+          obj[students[i].class].name = students[j].name;
+        }
       }
     }
     return obj;
